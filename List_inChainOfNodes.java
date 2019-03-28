@@ -9,9 +9,8 @@ public class List_inChainOfNodes{
       Construct an empty list
      */
     public List_inChainOfNodes() {
-    	/**
-    	 * headReference is equal to null
-    	 */
+    	headReference = null;
+
     }
 
 
@@ -53,4 +52,30 @@ public class List_inChainOfNodes{
     	 headReference = new Node(val, headReference);
     	 return true;
      }
+
+     public Object get (int index){
+	       if (getNode(index) == null)
+	        return null;
+	   return getNode(index).getCargoReference();
+
+     public Object set (int index, Object cargo){
+	       Node oldNode = getNode(index);
+	       Node newNode = new Node(cargo, oldNode.getReferenceToNextNode());
+	       if (index == 0)
+	        headReference = newNode;
+	       else
+	          getNode(index - 1).setReferenceToNextNode(newNode);
+	      return oldNode.getCargoReference();
+      }
+}
+
+  public boolean add (int index, Object cargo){
+	   if (index == 0)
+	     return addAsHead(cargo);
+	  else {
+	      Node node = new Node(cargo, getNode(index));
+	      getNode(index - 1).setReferenceToNextNode(node);
+	  return true;
+	     }
+    }
 }
